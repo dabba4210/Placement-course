@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 // Importing images
 import headerImage from '../assets/images/headerImage.webp';
-import courseThumbnail from '../assets/images/course_thumbnail.webp';
+import courseThumbnail from '../assets/images/course.webp';
 import pocketFriendlyCourses from '../assets/images/pocketFriendlyCourses.webp';
 import highQualityLectures from '../assets/images/highQualityLectures.webp';
 import detailedExplanations from '../assets/images/detailedExplanations.webp';
