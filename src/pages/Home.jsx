@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom'; // Make sure Link is imported
 import Typed from 'typed.js';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -98,7 +99,7 @@ const Home = () => {
                     <div className="container mx-auto px-6 text-center">
                         <h2 className="text-4xl font-bold mb-8">What would you like to <span className="text-blog">Learn?</span></h2>
                         <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform duration-500 hover:scale-105">
-                            <a href="#">
+                            <Link to="/payment">
                                 <img className="w-full" src={courseThumbnail} alt="Course Thumbnail" />
                                 <div className="p-6">
                                     <p className="inline-block px-3 py-1 text-xs font-bold text-green-600 border-2 border-green-600 rounded-full">BEGINNER TO ADVANCED 🔥🔥🔥</p>
@@ -110,7 +111,7 @@ const Home = () => {
                                         <p className="px-3 py-1 text-sm font-bold text-white bg-green-500 rounded-md">60% off</p>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -171,4 +172,3 @@ const Home = () => {
 };
 
 export default Home;
-

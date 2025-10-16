@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// Note: The specific theme toggler CSS is complex, so for simplicity, 
-// its styles are included in a separate file. In a real project,
-// you might use a library or more advanced CSS techniques.
+import { Link, useLocation } from 'react-router-dom'; // 1. Import useLocation
 import './ThemeToggler.css'; 
 
 // Importing images
@@ -12,6 +9,7 @@ import logoDark from '../assets/images/logo_dark.webp';
 const Navbar = () => {
     const [theme, setTheme] = useState('dark');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation(); // 2. Get the current page location
 
     useEffect(() => {
         if (theme === 'dark') {
@@ -27,6 +25,20 @@ const Navbar = () => {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    // 3. This function handles the smooth scroll
+    const handleCoursesLinkClick = (e) => {
+        setIsMenuOpen(false); // Close menu on click
+        // If we are already on the homepage, scroll smoothly
+        if (location.pathname === '/') {
+            e.preventDefault();
+            const coursesSection = document.getElementById('courses');
+            if (coursesSection) {
+                coursesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        // If on another page, the <Link> will navigate to the homepage and jump to the section.
     };
 
     return (
@@ -64,7 +76,8 @@ const Navbar = () => {
 
                     <div className={`md:flex items-center space-x-6 ${isMenuOpen ? 'flex' : 'hidden'} 
                         absolute md:static top-full right-0 flex-col md:flex-row bg-blog md:bg-transparent w-3/4 md:w-auto h-screen md:h-auto pt-10 md:pt-0`}>
-                        <Link to="/#courses" className="text-white md:text-inherit text-center py-2 md:py-0">Courses</Link>
+                        {/* 4. Add the onClick handler here */}
+                        <Link to="/#courses" onClick={handleCoursesLinkClick} className="text-white md:text-inherit text-center py-2 md:py-0">Courses</Link>
                         <Link to="/contact" className="text-white md:text-inherit text-center py-2 md:py-0">Contact Us</Link>
                         <Link to="/about" className="text-white md:text-inherit text-center py-2 md:py-0">About Us</Link>
                         <Link to="/login">
@@ -82,4 +95,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
