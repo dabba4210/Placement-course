@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // 1. Import useLocation
-import './ThemeToggler.css'; 
+import { Link, useLocation } from 'react-router-dom';
+import './ThemeToggler.css';
 
 // Importing images
 import logo from '../assets/images/logo.webp';
@@ -9,7 +9,7 @@ import logoDark from '../assets/images/logo_dark.webp';
 const Navbar = () => {
     const [theme, setTheme] = useState('dark');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const location = useLocation(); // 2. Get the current page location
+    const location = useLocation();
 
     useEffect(() => {
         if (theme === 'dark') {
@@ -27,10 +27,8 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    // 3. This function handles the smooth scroll
     const handleCoursesLinkClick = (e) => {
-        setIsMenuOpen(false); // Close menu on click
-        // If we are already on the homepage, scroll smoothly
+        setIsMenuOpen(false);
         if (location.pathname === '/') {
             e.preventDefault();
             const coursesSection = document.getElementById('courses');
@@ -38,7 +36,6 @@ const Navbar = () => {
                 coursesSection.scrollIntoView({ behavior: 'smooth' });
             }
         }
-        // If on another page, the <Link> will navigate to the homepage and jump to the section.
     };
 
     return (
@@ -57,7 +54,7 @@ const Navbar = () => {
                             <span className="toggle-button">
                                 <span className="crater crater-1"></span>
                                 <span className="crater crater-2"></span>
-                                <span className="crater crater-3"></span>   
+                                <span className="crater crater-3"></span>
                                 <span className="crater crater-4"></span>
                                 <span className="crater crater-5"></span>
                                 <span className="crater crater-6"></span>
@@ -74,15 +71,12 @@ const Navbar = () => {
                         </label>
                     </div>
 
-                    <div className={`md:flex items-center space-x-6 ${isMenuOpen ? 'flex' : 'hidden'} 
+                    <div className={`md:flex items-center space-x-6 ${isMenuOpen ? 'flex' : 'hidden'}
                         absolute md:static top-full right-0 flex-col md:flex-row bg-blog md:bg-transparent w-3/4 md:w-auto h-screen md:h-auto pt-10 md:pt-0`}>
-                        {/* 4. Add the onClick handler here */}
                         <Link to="/#courses" onClick={handleCoursesLinkClick} className="text-white md:text-inherit text-center py-2 md:py-0">Courses</Link>
                         <Link to="/contact" className="text-white md:text-inherit text-center py-2 md:py-0">Contact Us</Link>
                         <Link to="/about" className="text-white md:text-inherit text-center py-2 md:py-0">About Us</Link>
-                        <Link to="/login">
-                            <button className="px-7 py-2 rounded-full text-white font-bold bg-gradient-to-r from-blog-secondary to-blog">Login</button>
-                        </Link>
+                        {/* The Login button has been removed from here */}
                     </div>
 
                     <button onClick={toggleMenu} className="md:hidden text-2xl">
